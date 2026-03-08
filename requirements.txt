@@ -1,0 +1,7 @@
+fastapi==0.116.1
+uvicorn[standard]==0.30.6
+streamlit==1.37.1
+pandas==2.2.2
+plotly==5.23.0
+requests==2.32.3
+python-multipart==0.0.9

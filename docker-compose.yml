@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+    working_dir: /app/venv/app
+    environment:
+      - MSME_API_TOKEN=${MSME_API_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+
+  dashboard:
+    build: .
+    command: ["streamlit", "run", "/app/venv/app/dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    working_dir: /app/venv/app
+    environment:
+      - MSME_API_BASE_URL=http://api:8000
+      - MSME_API_TOKEN=${MSME_API_TOKEN}
+      - MSME_DASH_PASSWORD=msme-dashboard-2026
+    depends_on:
+      - api
+    ports:
+      - "8501:8501"

@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.log
+
+# Virtual environments (keep app code under venv/app)
+venv/*
+!venv/app/
+!venv/app/**
+.venv/
+env/
+.env
+
+# Local data and secrets
+data/
+*.sqlite
+*.db
+*.env
+
+# Streamlit cache
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db
